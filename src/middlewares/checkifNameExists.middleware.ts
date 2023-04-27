@@ -12,13 +12,15 @@ const checkIfNameExists = async (
 ): Promise<Response | void> => {
   const movieData: tMovieRequest = request.body
   const movieRepository: Repository<Movie> = AppDataSource.getRepository(Movie)
-  const foundMovie: Movie | null = await movieRepository.findOne({
-    where: {
-      name: movieData.name
+  if (movieData.name) {
+    const foundMovie: Movie | null = await movieRepository.findOne({
+      where: {
+        name: movieData.name
+      }
+    })
+    if (foundMovie) {
+      throw new AppError('Movie already exists.', 409)
     }
-  })
-  if (foundMovie) {
-    throw new AppError('Movie already exists.', 409)
   }
   return next()
 }

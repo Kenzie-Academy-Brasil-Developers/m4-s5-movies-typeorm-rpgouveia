@@ -27,7 +27,7 @@ const updateMovieController = async (
   response: Response
 ): Promise<Response> => {
   const movieId: number = Number(request.params.id)
-  const movieData = request.body
+  const movieData: tMovieRequest = request.body
   const updatedMovie: tMovie = await updateMovieService(movieId, movieData)
   return response.json(updatedMovie)
 }

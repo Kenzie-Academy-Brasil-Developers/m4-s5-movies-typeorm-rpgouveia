@@ -1,7 +1,7 @@
 import { Router } from "express"
 import { createMovieController, deleteMovieController, listMoviesController, updateMovieController } from "../controllers/movies.controllers"
 import checkRequestBodyData from "../middlewares/checkRequestBodyData.middleware"
-import { movieSchemaRequest } from "../schemas/movies.schemas"
+import { movieSchemaRequest, movieUpdateSchema } from "../schemas/movies.schemas"
 import checkIfNameExists from "../middlewares/checkifNameExists.middleware"
 import checkIfMovieExists from "../middlewares/checkIfMovieExists.middleware"
 
@@ -20,6 +20,7 @@ moviesRoutes.get(
 moviesRoutes.patch(
   "/:id",
   checkIfMovieExists,
+  checkRequestBodyData(movieUpdateSchema),
   checkIfNameExists,
   updateMovieController
 )
