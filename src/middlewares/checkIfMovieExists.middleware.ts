@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express"
 import { Repository } from "typeorm"
 import { Movie } from "../entities"
-import AppDataSource from "../data-source"
+import { AppDataSource } from "../data-source"
 import { AppError } from "../error"
 
 const checkIfMovieExists = async (

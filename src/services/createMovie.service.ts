@@ -1,7 +1,7 @@
 import { Repository } from "typeorm"
 import { tMovie, tMovieRequest } from "../interfaces/movies.interfaces"
 import { Movie } from "../entities"
-import AppDataSource from "../data-source"
+import { AppDataSource } from "../data-source"
 import { movieSchema } from "../schemas/movies.schemas"
 
 const createMovieService = async (

@@ -1,7 +1,7 @@
 import { Repository } from "typeorm"
 import { tMoviesListResponse } from "../interfaces/movies.interfaces"
 import { Movie } from "../entities"
-import AppDataSource from "../data-source"
+import { AppDataSource } from "../data-source"
 import { moviesListSchema } from "../schemas/movies.schemas"
 
 const listMoviesService = async (): Promise<tMoviesListResponse> => {
