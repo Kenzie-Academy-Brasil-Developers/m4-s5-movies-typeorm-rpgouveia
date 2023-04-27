@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { createMovieController, listMoviesController, updateMovieController } from "../controllers/movies.controllers"
+import { createMovieController, deleteMovieController, listMoviesController, updateMovieController } from "../controllers/movies.controllers"
 import checkRequestBodyData from "../middlewares/checkRequestBodyData.middleware"
 import { movieSchemaRequest } from "../schemas/movies.schemas"
 import checkIfNameExists from "../middlewares/checkifNameExists.middleware"
@@ -22,6 +22,11 @@ moviesRoutes.patch(
   checkIfMovieExists,
   checkIfNameExists,
   updateMovieController
+)
+moviesRoutes.delete(
+  "/:id",
+  checkIfMovieExists,
+  deleteMovieController
 )
 
 export default moviesRoutes

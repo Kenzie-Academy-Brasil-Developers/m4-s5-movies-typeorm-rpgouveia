@@ -3,6 +3,7 @@ import { tMovie, tMovieRequest, tMoviesResponse } from "../interfaces/movies.int
 import createMovieService from "../services/createMovie.service"
 import listMoviesService from "../services/listMovies.service"
 import updateMovieService from "../services/updateMovie.service"
+import deleteMovieService from "../services/deleteMovie.service"
 
 const createMovieController = async (
   request: Request,
@@ -31,8 +32,18 @@ const updateMovieController = async (
   return response.json(updatedMovie)
 }
 
+const deleteMovieController = async (
+  request: Request,
+  response: Response
+): Promise<Response> => {
+  const movieId: number = Number(request.params.id)
+  await deleteMovieService(movieId)
+  return response.status(204).send()
+}
+
 export {
   createMovieController,
   listMoviesController,
-  updateMovieController
+  updateMovieController,
+  deleteMovieController
 }
