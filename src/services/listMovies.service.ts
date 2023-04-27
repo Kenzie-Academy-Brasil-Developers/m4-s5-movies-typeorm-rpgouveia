@@ -1,13 +1,13 @@
 import { Repository } from "typeorm"
-import { tMoviesResponse } from "../interfaces/movies.interfaces"
+import { tMoviesListResponse } from "../interfaces/movies.interfaces"
 import { Movie } from "../entities"
 import AppDataSource from "../data-source"
-import { moviesSchemaResponse } from "../schemas/movies.schemas"
+import { moviesListSchema } from "../schemas/movies.schemas"
 
-const listMoviesService = async (): Promise<tMoviesResponse> => {
+const listMoviesService = async (): Promise<tMoviesListResponse> => {
   const movieRepository: Repository<Movie> = AppDataSource.getRepository(Movie)
   const moviesList: Movie[] = await movieRepository.find()
-  const movies: tMoviesResponse = moviesSchemaResponse.parse(moviesList)
+  const movies: tMoviesListResponse = moviesListSchema.parse(moviesList)
   return movies
 }
 

@@ -7,12 +7,11 @@ const movieSchema = z.object({
   duration: z.number(),
   price: z.number()
 })
-
+const moviesListSchema = z.array(movieSchema)
 const movieSchemaRequest = movieSchema.omit({ id: true })
-const moviesSchemaResponse = z.array(movieSchema)
 
 export {
   movieSchema,
   movieSchemaRequest,
-  moviesSchemaResponse
+  moviesListSchema
 }

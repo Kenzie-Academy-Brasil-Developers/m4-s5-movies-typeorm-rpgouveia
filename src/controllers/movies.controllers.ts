@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { tMovie, tMovieRequest, tMoviesResponse } from "../interfaces/movies.interfaces"
+import { tMovie, tMovieRequest, tMoviesListResponse } from "../interfaces/movies.interfaces"
 import createMovieService from "../services/createMovie.service"
 import listMoviesService from "../services/listMovies.service"
 import updateMovieService from "../services/updateMovie.service"
@@ -18,7 +18,7 @@ const listMoviesController = async (
   request: Request,
   response: Response
 ): Promise<Response> => {
-  const movies: tMoviesResponse = await listMoviesService()
+  const movies: tMoviesListResponse = await listMoviesService()
   return response.json(movies)
 }
 
