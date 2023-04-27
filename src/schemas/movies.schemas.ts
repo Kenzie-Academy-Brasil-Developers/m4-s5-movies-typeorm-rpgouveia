@@ -9,8 +9,10 @@ const movieSchema = z.object({
 })
 
 const movieSchemaRequest = movieSchema.omit({ id: true })
+const moviesSchemaResponse = z.array(movieSchema)
 
 export {
   movieSchema,
-  movieSchemaRequest
+  movieSchemaRequest,
+  moviesSchemaResponse
 }
