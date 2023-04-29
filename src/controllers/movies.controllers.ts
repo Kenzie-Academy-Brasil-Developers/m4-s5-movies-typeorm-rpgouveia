@@ -19,8 +19,7 @@ const listMoviesController = async (
   response: Response
 ): Promise<Response> => {
   const params: tMoviesPaginationRequest = request.query
-  const baseUrl: string = `${request.protocol}://${request.headers.host}${request.baseUrl}`
-  const movies: tMoviesPaginationResponse = await listMoviesService(params, baseUrl)
+  const movies: tMoviesPaginationResponse = await listMoviesService(params)
   return response.json(movies)
 }
 

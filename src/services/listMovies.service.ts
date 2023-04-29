@@ -5,8 +5,7 @@ import { AppDataSource } from "../data-source"
 import { moviesListSchema } from "../schemas/movies.schemas"
 
 const listMoviesService = async (
-  params: tMoviesPaginationRequest,
-  baseUrl: string
+  params: tMoviesPaginationRequest
   ): Promise<tMoviesPaginationResponse> => {
   // Definição do repositório
   const movieRepository: Repository<Movie> = AppDataSource.getRepository(Movie)
@@ -43,9 +42,8 @@ const listMoviesService = async (
   })
   
   // Formulação do Retorno
-  // Quantidade de itens na busca
+  // Lista de filmes
   const movies: tMoviesListResponse = moviesListSchema.parse(moviesList)
-  const quantity = movies.length
   
   // Quantidade total de items do Banco de Dados
   const totalQuantity:  number = await movieRepository.count()
@@ -53,6 +51,7 @@ const listMoviesService = async (
   const maximumPageNumber: number = totalQuantity / perPage
   
   // Formulação das URLs
+  const baseUrl: string = "http://localhost:3000/movies"
   const prevPage =
     page > 1
       ? `${baseUrl}?page=${page - 1}&perPage=${perPage}`
@@ -65,7 +64,7 @@ const listMoviesService = async (
   return {
     prevPage: prevPage,
     nextPage: nextPage,
-    count: quantity,
+    count: totalQuantity,
     data: movies
   }
 }
