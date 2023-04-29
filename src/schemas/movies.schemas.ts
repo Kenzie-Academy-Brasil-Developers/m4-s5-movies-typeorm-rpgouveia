@@ -9,11 +9,11 @@ const movieSchema = z.object({
 })
 const moviesListSchema = z.array(movieSchema)
 const movieUpdateSchema = movieSchema.partial()
-const movieSchemaRequest = movieSchema.omit({ id: true })
+const movieRequestSchema = movieSchema.omit({ id: true })
 
 export {
   movieSchema,
-  movieSchemaRequest,
+  movieRequestSchema,
   moviesListSchema,
   movieUpdateSchema
 }
