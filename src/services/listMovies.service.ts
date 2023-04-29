@@ -48,7 +48,7 @@ const listMoviesService = async (
   // Quantidade total de items do Banco de Dados
   const totalQuantity:  number = await movieRepository.count()
   // Verificar quantidade máxima de paginas
-  const maximumPageNumber: number = totalQuantity / perPage
+  const maximumPageNumber: number = Math.ceil(totalQuantity / perPage)
   
   // Formulação das URLs
   const baseUrl: string = "http://localhost:3000/movies"
