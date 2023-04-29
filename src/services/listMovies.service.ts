@@ -29,17 +29,25 @@ const listMoviesService = async (
   const offset: number = (page - 1) * perPage
   
   // Configuração da ordenação
-  let sort = params.sort || "id"
+  let sort = params.sort
   let order = params.order || "asc"
   
   // Lógica para Listagem de Filmes
-  const moviesList: Movie[] = await movieRepository.find({
-    skip: offset,
-    take: limit,
-    order: {
-      [sort]: order
-    }
-  })
+  let moviesList: Movie[]
+  if (!sort) {
+    moviesList = await movieRepository.find({
+      skip: offset,
+      take: limit,
+    })
+  } else {
+    moviesList = await movieRepository.find({
+      skip: offset,
+      take: limit,
+      order: {
+        [sort]: order
+      }
+    })
+  }
   
   // Formulação do Retorno
   // Lista de filmes
